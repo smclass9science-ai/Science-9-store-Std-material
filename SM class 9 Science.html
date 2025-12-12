@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>A4 JPEG & PDF Viewer App — Optimized</title>
+<title>Class 9 Study materials</title>
 
 <!-- PDF.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
@@ -135,7 +136,7 @@ body { display:flex; height:100vh; overflow:hidden; }
 
 <div id="sidebar" role="navigation" aria-label="Chapters">
 
-  <!-- ★★ ADDED BUTTON HERE ★★ -->
+   <!-- ★★ ADDED BUTTON HERE ★★ -->
 <a href="https://smclass9science-ai.github.io/Science-9-store-Std-material/science%209%20store.html" 
    class="buyBtn" target="_blank">BUY HARD COPY</a>
 
@@ -1054,7 +1055,6 @@ let data = {
 	
  
 };
-
 /* ================= STATE VARS ================= */
 let currentList = [], index = 0;
 let zoomLevel = 1, autoScale = 1;
@@ -1098,13 +1098,35 @@ menuBtn.addEventListener('click', () => {
 /* ============== LOAD SUBLIST ============== */
 function loadSub(code){
   currentList = data[code] || [];
-  index = 0; imgX = imgY = 0;
+  preloadFirst(currentList);   // ← new line
+
+  index = 0;
+  imgX = imgY = 0;
+
   exitPDF();
   loadPage(true);
-  controls.style.display = 'flex';
-    if (window.innerWidth <= 1024) sidebar.classList.remove('open');
 
+  controls.style.display = 'flex';
+  if (window.innerWidth <= 1180) sidebar.classList.remove('open');
 }
+
+
+
+
+
+
+
+
+function preloadFirst(list){
+    if(list.length > 0){
+        let firstUrl = list[0];
+        if(!firstUrl.toLowerCase().endsWith(".pdf")){
+            let imgPre = new Image();
+            imgPre.src = firstUrl;
+        }
+    }
+}
+
 
 /* ============== LOAD PAGE (IMAGE or PDF) ============== */
 function loadPage(first=false){
@@ -1119,7 +1141,27 @@ function loadPage(first=false){
 
    if(first){
 
-      autoScale = window.innerWidth > 1000 ? (vh / H) * 2.62 : (vw / W);
+      // Detect tablet landscape mode
+let w = window.innerWidth;
+let h = window.innerHeight;
+
+// Detect desktop
+let isDesktop = w >= 1200;
+
+// Base width-fit
+autoScale = w / W;
+
+// Desktop exception → keep your special scaling
+if (isDesktop) {
+    autoScale = (vh / H) * 2.62;
+}
+
+// Tablet Landscape Fix: limit auto-scale (prevents zoom-in overflow)
+if (!isDesktop && w >= 900 && w < 1200 && w > h) {
+    autoScale = Math.min(autoScale, 1.15);  
+}
+
+
       zoomLevel = autoScale; imgX = 0; imgY = 0;
     }
 
@@ -1132,6 +1174,8 @@ function loadPage(first=false){
   // in case onload doesn't fire or is cached, still update
   pageNum.textContent = `Page ${index+1} / ${currentList.length}`;
   pageInput.value = index+1;
+  preloadNext();
+
 }
 
 /* ============== CLAMP UTILITY ============== */
@@ -1425,10 +1469,17 @@ document.addEventListener("click", (e) => {
   }
 });
 
+function preloadNext() {
+    if (index + 1 < currentList.length) {
+        let nextUrl = currentList[index + 1];
+        if (!nextUrl.toLowerCase().endsWith('.pdf')) {
+            let imgPre = new Image();
+            imgPre.src = nextUrl;
+        }
+    }
+}
+
+
 </script>
 </body>
 </html>
-
-
-
-
