@@ -20,7 +20,13 @@ body { display:flex; height:100vh; overflow:hidden; }
   flex:1;
   background: url("https://i.ibb.co/RTjxjG88/class12.jpg") no-repeat center center;
   background-size: cover;
-  overflow-y:auto !important;
+  
+  
+  
+  overflow-y:auto;
+  
+  
+  
   overflow-x:hidden;
   position:relative;
   display:flex;
@@ -45,7 +51,7 @@ body { display:flex; height:100vh; overflow:hidden; }
 #sidebar h2{font-size:20px;margin-bottom:10px;color:#38bdf8}
 .chapter{margin-bottom:10px;background:#334155;padding:10px;border-radius:8px;cursor:pointer}
 .subList{display:none;padding:10px;background:#475569;margin-top:5px;border-radius:6px}
-.subList div{Padding:6px;background:#64748b;margin:5px 0;border-radius:6px;cursor:pointer}
+.subList div{padding:6px;background:#64748b;margin:5px 0;border-radius:6px;cursor:pointer}
 .subList div:hover{background:#94a3b8}
 
 /* IMAGE / PDF WRAPPER */
@@ -128,6 +134,161 @@ body { display:flex; height:100vh; overflow:hidden; }
 }
 
 
+
+
+
+
+/* ===== BUY HARD COPY POPUP ===== */
+#buyPopupOverlay{
+  position:fixed;
+  top:0; left:0;
+  width:100vw; height:100vh;
+  background:rgba(0,0,0,0.75);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100000;
+}
+
+#buyPopup{
+  background:#0f172a;
+  color:white;
+  padding:22px;
+  width:90%;
+  max-width:360px;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(255,215,0,0.6);
+  animation:popupScale .35s ease;
+}
+
+#buyPopup h2{
+  color:#ffd700;
+  margin-bottom:10px;
+}
+
+#buyPopup p{
+  font-size:14px;
+  line-height:1.4;
+  margin-bottom:18px;
+}
+
+#buyPopupBtn{
+  display:block;
+  background:#80030f;
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 10px #ffae00;
+  margin-bottom:12px;
+}
+
+#closePopup{
+  background:none;
+  border:none;
+  color:#94a3b8;
+  font-size:13px;
+  cursor:pointer;
+}
+
+@keyframes popupScale{
+  from{ transform:scale(.85); opacity:0 }
+  to{ transform:scale(1); opacity:1 }
+}
+
+	
+	
+	
+#viewer {
+  overflow-y:auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+#contentImg{
+  will-change: transform;
+  backface-visibility: hidden;
+  touch-action: pinch-zoom;
+}
+
+
+	#bookmarkBtn.active{
+  background: gold;
+  color: black;
+}
+	
+.chapterInfo{
+    font-size:10px;
+    margin-top:3px;
+    line-height:1.2;
+}
+
+.chapterInfo .syllabus{
+    color:#ffff00;   /* bright yellow */
+    font-weight:bold;
+    display:block;
+}
+
+.chapterInfo .subject{
+    color:#ff3030;   /* bright red */
+    font-weight:bold;
+    display:block;
+}	
+	
+.subject-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  width:100%;
+}
+
+.subject-buttons button{
+  padding:9px;
+  font-size:10px;
+  border:none;
+  border-radius:4px;
+  color:white;
+  cursor:pointer;
+}
+	
+/* Chemistry */
+.chemistry{
+  background:#e74c3c;
+}
+.chemistry:hover{
+  background:#c0392b;
+}
+
+/* Biology */
+.biology{
+  background:#27ae60;
+}
+.biology:hover{
+  background:#1e8449;
+}
+
+/* Physics */
+.physics{
+  background:#3498db;
+}
+.physics:hover{
+  background:#21618c;
+}
+
+/* Environment */
+.environment{
+  background:#f39c12;
+}
+.environment:hover{
+  background:#d68910;
+}	
+
+
+
+
 /* MOVING NOTICE BAR */
 #noticeBar{
   position:absolute;
@@ -157,9 +318,6 @@ body { display:flex; height:100vh; overflow:hidden; }
 
 
 	
-
-
-	
 </style>
 </head>
 <body>
@@ -169,119 +327,219 @@ body { display:flex; height:100vh; overflow:hidden; }
 
 <div id="sidebar" role="navigation" aria-label="Chapters">
 
-  <!-- ★★ ADDED BUTTON HERE ★★ -->
-<a href="https://smclass12physics-afk.github.io/S-M_12-physics-and-store/physics 12 store.html" 
+    <!-- ★★ ADDED BUTTON HERE ★★ -->
+<a href="https://smcl10science-hash.github.io/SM-Cl-10-Science-data/store/cass  12  physsics  store.html" 
    class="buyBtn" target="_blank">BUY HARD COPY</a>
+   
+<div class="subject-buttons">
+  <button class="chemistry" onclick="showClass('Chemistry')">Chemistry</button>
+  <button class="biology" onclick="showClass('Biology')">Biology</button>
+  <button class="physics" onclick="showClass('Physics')">Physics</button>
+  <button class="environment" onclick="showClass('Enviroment')">Environment</button>
+</div>
 
 <h2>Chapters</h2>
+<div id="Chemistry">
 
- <div class="chapter">Chapter 1 MATTER IN OUR SURROUNDING
-        <div class="subList">
-            <div onclick="loadSub('C1_T1')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C1_Q1')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C1_N1')">NCERT</div>
-			<div onclick="loadSub('C1_A1')">NCERT SOLUTION</div>
-  </div>
- </div>
-   <div class="chapter">Chapter 2 IS MATTER AROUND US PURE? 
-        <div class="subList">
-           <div onclick="loadSub('C2_T2')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C2_Q2')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C2_N2')">NCERT</div>
-			<div onclick="loadSub('C2_A2')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 3 ATOMS AND MOLECULES
-        <div class="subList">
-            <div onclick="loadSub('C3_T3')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C3_Q3')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C3_N3')">NCERT</div>
-			<div onclick="loadSub('C3_A3')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 4 STRUCTURE OF THE ATOM
-        <div class="subList">
-           <div onclick="loadSub('C4_T4')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C4_Q4')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C4_N4')">NCERT</div>
-			<div onclick="loadSub('C4_A4')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 5 THE FUNDAMENTAL UNIT OF LIFE
-        <div class="subList">
-          <div onclick="loadSub('C5_T5')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C5_Q5')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C5_N5')">NCERT</div>
-			<div onclick="loadSub('C5_A5')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 6 TISSUES
-        <div class="subList">
-           <div onclick="loadSub('C6_T6')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C6_Q6')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C6_N6')">NCERT</div>
-			<div onclick="loadSub('C6_A6')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 7 MOTION
-        <div class="subList">
-            <div onclick="loadSub('C7_T7')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C7_Q7')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C7_N7')">NCERT</div>
-			<div onclick="loadSub('C7_A7')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 8 FORCE AND LAWS OF MOTION
-        <div class="subList">
-           <div onclick="loadSub('C8_T8')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C8_Q8')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C8_N8')">NCERT</div>
-			<div onclick="loadSub('C8_A8')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 9 GRAVITAION
-        <div class="subList">
-            <div onclick="loadSub('C9_T9')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C9_Q9')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C9_N9')">NCERT</div>
-			<div onclick="loadSub('C9_A9')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 10 WORK AND ENERGY
-        <div class="subList">
-            <div onclick="loadSub('C10_T10')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C10_Q10')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C10_N10')">NCERT</div>
-			<div onclick="loadSub('C10_A10')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 11 SOUND
-        <div class="subList">
-            <div onclick="loadSub('C11_T11')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C11_Q11')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C11_N11')">NCERT</div>
-			<div onclick="loadSub('C11_A11')">NCERT SOLUTION</div>
-        </div>
- </div>
-   <div class="chapter">Chapter 12 WHY DO WE FALL ILL?
-        <div class="subList">
-            <div onclick="loadSub('C12_T12')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C12_Q12')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C12_N12')">NCERT</div>
-			<div onclick="loadSub('C12_A12')">NCERT SOLUTION</div>
-        </div>
- </div>
-    <div class="chapter">Chapter 13 IMPROVEMENT OF FOODS RESOURCES
-        <div class="subList">
-           <div onclick="loadSub('C13_T13')">TOPPER’S SPECIAL NOTES</div>
-            <div onclick="loadSub('C13_Q13')">SUBJECTIVE QUESTION WITH SOLUTION</div>
-			<div onclick="loadSub('C13_N13')">NCERT</div>
-			<div onclick="loadSub('C13_A13')">NCERT SOLUTION</div>
-        </div>
+<div class="chapter">Chapter 1 MATTER IN OUR SURROUNDING
+		<div class="chapterInfo">
+<span class="syllabus">Class 9 + Competitive exam level</span>
+<span class="subject">**Chemistry**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C91_T91')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C1_Q1')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C1_N1')">NCERT</div>
+        <div onclick="loadSub('C1_A1')">NCERT SOLUTION</div>
     </div>
 </div>
 
+<div class="chapter">Chapter 2 IS MATTER AROUND US PURE?
+<div class="chapterInfo">
+<span class="syllabus">Class 9 + Competitive exam level</span>
+<span class="subject">**Chemistry**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C2_T2')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C2_Q2')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C2_N2')">NCERT</div>
+        <div onclick="loadSub('C2_A2')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 3 ATOMS AND MOLECULES
+<div class="chapterInfo">
+<span class="syllabus">Class 9 + Competitive exam level</span>
+<span class="subject">**Chemistry**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C3_T3')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C3_Q3')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C3_N3')">NCERT</div>
+        <div onclick="loadSub('C3_A3')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 4 STRUCTURE OF THE ATOM
+<div class="chapterInfo">
+<span class="syllabus">Class 9 + Competitive exam level</span>
+<span class="subject">**Chemistry**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C4_T4')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C4_Q4')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C4_N4')">NCERT</div>
+        <div onclick="loadSub('C4_A4')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+
+</div>   <!-- CLOSE Chemistry -->
+
+<div id="Biology" style="display:none;">
+
+<div class="chapter">Chapter 5 THE FUNDAMENTAL UNIT OF LIFE
+<div class="chapterInfo">
+<span class="syllabus">Class 9 + Competitive exam level</span>
+<span class="subject">**Biology**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C5_T5')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C5_Q5')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C5_N5')">NCERT</div>
+        <div onclick="loadSub('C5_A5')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 6 TISSUES
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Biology**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C6_T6')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C6_Q6')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C6_N6')">NCERT</div>
+        <div onclick="loadSub('C6_A6')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 7 WHY DO WE FALL ILL?
+<div class="chapterInfo">
+<span class="syllabus">Class 9 + Competitive exam level</span>
+<span class="subject">**Biology**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C7_T7')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C7_Q7')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C7_N7')">NCERT</div>
+        <div onclick="loadSub('C7_A7')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+
+</div>   <!-- CLOSE Physics -->
+
+<div id="Physics" style="display:none;">
+
+<div class="chapter">Chapter 8 MOTION
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Physics**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C8_T8')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C8_Q8')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C8_N8')">NCERT</div>
+        <div onclick="loadSub('C8_A8')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 9 FORCE AND LAWS OF MOTION
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Physics**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C9_T9')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C9_Q9')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C9_N9')">NCERT</div>
+        <div onclick="loadSub('C9_A9')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 10 GRAVITAION
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Physics**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C10_T10')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C10_Q10')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C10_N10')">NCERT</div>
+        <div onclick="loadSub('C10_A10')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 10 WORK AND ENERGY
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Physics**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C10_T10')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C10_Q10')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C10_N10')">NCERT</div>
+        <div onclick="loadSub('C10_A10')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+<div class="chapter">Chapter 11 SOUND
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Physics**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C11_T11')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C11_Q11')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C11_N11')">NCERT</div>
+        <div onclick="loadSub('C11_A11')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+
+</div>   <!-- CLOSE Physics -->
+
+<div id="Enviroment" style="display:none;">
+
+
+<div class="chapter">Chapter 12 IMPROVEMENT OF FOODS RESOURCES
+<div class="chapterInfo">
+<span class="syllabus">Class 10 + Competitive exam level</span>
+<span class="subject">**Environment**</span>
+</div>
+    <div class="subList">
+        <div onclick="loadSub('C14_T14')">TOPPER’S SPECIAL NOTES</div>
+        <div onclick="loadSub('C14_Q14')">SUBJECTIVE QUESTION WITH SOLUTION</div>
+        <div onclick="loadSub('C14_N14')">NCERT</div>
+        <div onclick="loadSub('C14_A14')">NCERT SOLUTION</div>
+    </div>
+</div>
+
+
+
+
+</div>
+</div> <!-- CLOSE SIDEBAR -->
+
 <div id="viewer" role="main" aria-label="Document viewer">
+
+	
+
+
+
+
+
 
 
 
@@ -293,7 +551,17 @@ body { display:flex; height:100vh; overflow:hidden; }
   </div>
 </div>
 
-	
+
+
+
+
+
+
+
+
+
+
+
   <div id="imgWrapper">
     <img id="contentImg" src="" alt="Page" decoding="async" loading="eager">
 
@@ -306,9 +574,14 @@ body { display:flex; height:100vh; overflow:hidden; }
   <button class="btn" id="prevBtn" aria-label="Previous">◀</button>
   <input type="number" id="pageInput" aria-label="Page number">
   <button class="btn" id="nextBtn" aria-label="Next">▶</button>
+  <button class="btn" id="bookmarkBtn">🔖</button>
+  <button class="btn" onclick="showBookmarks()">📑</button>
+  	 <button class="btn" id="solutionBtn" style="display:none;" 
+onclick="window.open('https://ai-question-and-its-solution-3oip.onrender.com')">🧠</button>
   <button class="btn" id="zoomIn" aria-label="Zoom in">⊕</button>
   <button class="btn" id="zoomOut" aria-label="Zoom out">⊖</button>
-     <button class="btn" id="homeBtn" onclick="window.open('https://gten-educational-platform.github.io/Class-12/class 12 button.html')">🏠</button>
+     <button class="btn" id="homeBtn" onclick="window.open('https://gten-educational-platform.github.io/Class-12/class 10 button.html')">🏠</button>
+
 </div>
 
 <script>
@@ -316,55 +589,62 @@ body { display:flex; height:100vh; overflow:hidden; }
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 /* ================= DATA (preserved) ================= */
+
+
+
+
+
+/* ================= DATA (preserved) ================= */
 let data = {
-	 "C1_T1":[
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0001.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0002.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0003.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0004.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0005.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0006.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0007.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0008.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0009.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0010.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0011.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0012.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0013.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0014.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0015.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0016.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0017.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0018.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0019.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0020.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0021.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0022.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0023.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0024.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0025.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0026.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0027.jpg",
-  "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/2. MATTER IN OUR SURROUNDINGS THEORY 2025_page-0028.jpg"
-    ],
-	 	  "C_Q1":[
+
+	 "C1211_C1211":[
+  
+    "https://g10educationalplatform-physics.github.io/SM-IIT-JEE/THERMOMETRY/Contents-THERMOMETRY  2026_page-0001.jpg"
+     ],
+		  "C91_T91":[
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0001.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0002.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0003.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0004.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0005.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0006.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0007.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0008.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0009.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0010.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0011.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0012.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0013.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0014.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0015.jpg",
+   "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/Theory/1. MATTER IN OUR SURROUNDINGS T 2026_page-0016.jpg"
+
+			 
+  
+   
+  
+     ],
+	 	  "C111_Q111":[
   "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0001.jpg",
     "https://gten-educational-platform.github.io/Class-12/Centre Prospectus.pdf",
     "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0003.jpg"
      ],
-	 	  "C_N1":[
+	 	  "C111_N111":[
       "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/MATTER IN OUR SURROUNDING NCERT.pdf"
      ],
-	  "C_A1":[
+	  "C111_A111":[
   "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0001.jpg",
     "https://gten-educational-platform.github.io/Class-12/Centre Prospectus.pdf",
     "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0003.jpg"
      ],
+	 
 
 
 
-	  "C2_T2":[
-  "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0001.jpg",
+
+
+	 "C2_T2":[
+   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0001.jpg",
   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0002.jpg",
   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0003.jpg",
   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0004.jpg",
@@ -409,8 +689,29 @@ let data = {
   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0043.jpg",
   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0044.jpg",
   "https://jitenclass9.github.io/S-M-IS-MA---AROUND-IS-PUR/THEORY/1. IS MATTER AROUND US PURE STUDY MATERIALS2-2025_page-0045.jpg"
+   
+  
+     ],
+	 	  "C108_Q1":[
+  "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0001.jpg",
+    "https://gten-educational-platform.github.io/Class-12/Centre Prospectus.pdf",
+    "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0003.jpg"
+     ],
+	 	  "C_N1":[
+      "https://jitenclass9.github.io/S-M-MATTER-IN-OUR-SUR/MATTER IN OUR SURROUNDING NCERT.pdf"
+     ],
+	  "C_A1":[
+  "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0001.jpg",
+    "https://gten-educational-platform.github.io/Class-12/Centre Prospectus.pdf",
+    "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0003.jpg"
+     ],
 
-    
+
+
+	  "C_T":[
+  "",
+    "",
+    ""
      ],
 	 	  "C_Q":[
   "https://gten-educational-platform.github.io/SEETS-JPEG/SET AND RELATIN theory-2025_page-0001.jpg",
@@ -431,7 +732,7 @@ let data = {
 
 
 
-  "C3_T3":[
+   "C3_T3":[
     "https://jitenclass9.github.io/S-M-ATOMS-AND-MOLECULES/Theory/3. ATOMS AND MOLECULES THEORY- 2025_page-0001.jpg",
 	"https://jitenclass9.github.io/S-M-ATOMS-AND-MOLECULES/Theory/3. ATOMS AND MOLECULES THEORY- 2025_page-0002.jpg",
 	"https://jitenclass9.github.io/S-M-ATOMS-AND-MOLECULES/Theory/3. ATOMS AND MOLECULES THEORY- 2025_page-0003.jpg",
@@ -546,7 +847,7 @@ let data = {
      ],
 	 
 	 
-	 
+	  
 		  "C4_T4":[
   "https://jitenclass9.github.io/S-M-STCE-OF-ATOMS/THEORY/4. STRUCTUE OF ATOMS THEORY 2025_page-0001.jpg",
   "https://jitenclass9.github.io/S-M-STCE-OF-ATOMS/THEORY/4. STRUCTUE OF ATOMS THEORY 2025_page-0002.jpg",
@@ -695,7 +996,7 @@ let data = {
 	 
 	 
 	 
-	 	  "C7_T7":[
+	 	  "C8_T8":[
   "https://jitenclass9.github.io/S-M-Motion/theory/MOTION THEORY 2025_page-0001.jpg",
   "https://jitenclass9.github.io/S-M-Motion/theory/MOTION THEORY 2025_page-0002.jpg",
   "https://jitenclass9.github.io/S-M-Motion/theory/MOTION THEORY 2025_page-0003.jpg",
@@ -766,7 +1067,7 @@ let data = {
 	 
 	 
 	 
-	 	  "C8_T8":[
+	 	  "C9_T9":[
   "https://jitenclass9.github.io/S-M-FORCE-L-MOTION/THEORY/FORCE AND LAW OF MOTION Theory-2025_page-0001.jpg",
   "https://jitenclass9.github.io/S-M-FORCE-L-MOTION/THEORY/FORCE AND LAW OF MOTION Theory-2025_page-0002.jpg",
   "https://jitenclass9.github.io/S-M-FORCE-L-MOTION/THEORY/FORCE AND LAW OF MOTION Theory-2025_page-0003.jpg",
@@ -825,7 +1126,7 @@ let data = {
 	 
 	 
 	 
-	"C9_T9":[
+	"C10_T10":[
   "https://jitenclass9.github.io/S-M-GRAVATATION/THEORY/Gravitation & t & pressere theory-2025_page-0001.jpg",
   "https://jitenclass9.github.io/S-M-GRAVATATION/THEORY/Gravitation & t & pressere theory-2025_page-0002.jpg",
   "https://jitenclass9.github.io/S-M-GRAVATATION/THEORY/Gravitation & t & pressere theory-2025_page-0003.jpg",
@@ -994,7 +1295,7 @@ let data = {
 	 
 	 
 	 
-	 	  "C12_T12":[
+	 	  "C7_T7":[
   "https://jitenclass9.github.io/S-M-WHY-DO-WE--F-ILL/WHY DO WE FAL tHEORY 2025_page-0001.jpg",
   "https://jitenclass9.github.io/S-M-WHY-DO-WE--F-ILL/WHY DO WE FAL tHEORY 2025_page-0002.jpg",
   "https://jitenclass9.github.io/S-M-WHY-DO-WE--F-ILL/WHY DO WE FAL tHEORY 2025_page-0003.jpg",
@@ -1098,11 +1399,13 @@ let data = {
 	
 	
 	
-	
- 
-};
+	};
+
+
+
 /* ================= STATE VARS ================= */
 let currentList = [], index = 0;
+let currentCode = "";   // ⭐ ADD THIS LINE
 let zoomLevel = 1, autoScale = 1;
 let img = document.getElementById('contentImg');
 let viewer = document.getElementById('viewer');
@@ -1143,10 +1446,25 @@ menuBtn.addEventListener('click', () => {
 
 /* ============== LOAD SUBLIST ============== */
 function loadSub(code){
+ currentCode = code;
+
+ // ⭐ SHOW SOLUTION BUTTON ONLY FOR CX_QX
+ const solutionBtn = document.getElementById("solutionBtn");
+ if(code.includes("_Q")){
+     solutionBtn.style.display = "inline-block";
+ }else{
+     solutionBtn.style.display = "none";
+ }
+ 
   currentList = data[code] || [];
   preloadFirst(currentList);   // ← new line
 
   index = 0;
+  // Restore last page if saved
+let savedPage = localStorage.getItem("page_" + code);
+if(savedPage){
+  index = parseInt(savedPage);
+}
   imgX = imgY = 0;
 
   exitPDF();
@@ -1177,6 +1495,7 @@ function preloadFirst(list){
 /* ============== LOAD PAGE (IMAGE or PDF) ============== */
 function loadPage(first=false){
   let url = currentList[index];
+   localStorage.setItem("page_" + currentCode, index); // ⭐ SAVE PAGE
   if(!url) return;
   if(url.toLowerCase().endsWith('.pdf')) { enterPDF(url); return; }
 
@@ -1220,9 +1539,24 @@ if (!isDesktop && w >= 900 && w < 1200 && w > h) {
   // in case onload doesn't fire or is cached, still update
   pageNum.textContent = `Page ${index+1} / ${currentList.length}`;
   pageInput.value = index+1;
+  updateBookmarkIcon();   // ⭐ update bookmark highlight
   preloadNext();
 
 }
+function updateBookmarkIcon(){
+
+ let key = "bookmark_" + currentCode;
+
+ let bookmarks = JSON.parse(localStorage.getItem(key)) || [];
+
+ if(bookmarks && bookmarks.includes(index)){
+   bookmarkBtn.classList.add("active");
+ }else{
+   bookmarkBtn.classList.remove("active");
+ }
+
+}
+
 
 /* ============== CLAMP UTILITY ============== */
 function clamp(value, min, max){ return Math.min(Math.max(value, min), max); }
@@ -1230,18 +1564,56 @@ function clamp(value, min, max){ return Math.min(Math.max(value, min), max); }
 /* ============== NAVIGATION ============== */
 nextBtn.addEventListener('click', ()=> {
   if(pdfMode.active){
-    if(pdfMode.page < pdfMode.total){ pdfMode.page++; renderPDFPage(); return; }
-    else { exitPDF(); if(index < currentList.length-1){ index++; imgX = imgY = 0; loadPage(true); } return; }
+    if(pdfMode.page < pdfMode.total){ 
+      pdfMode.page++; 
+      renderPDFPage();
+      viewer.scrollTop = 0;   // ADD THIS
+      return; 
+    }
+    else { 
+      exitPDF(); 
+      if(index < currentList.length-1){ 
+        index++; 
+        imgX = imgY = 0; 
+        loadPage(true); 
+        viewer.scrollTop = 0;   // ADD THIS
+      } 
+      return; 
+    }
   }
-  if(index < currentList.length-1){ index++; imgX = imgY = 0; loadPage(true); }
+  if(index < currentList.length-1){ 
+    index++; 
+    imgX = imgY = 0; 
+    loadPage(true); 
+    viewer.scrollTop = 0;   // ADD THIS
+  }
 });
 
 prevBtn.addEventListener('click', ()=> {
   if(pdfMode.active){
-    if(pdfMode.page > 1){ pdfMode.page--; renderPDFPage(); return; }
-    else { exitPDF(); if(index > 0){ index--; imgX = imgY = 0; loadPage(true); } return; }
+    if(pdfMode.page > 1){ 
+      pdfMode.page--; 
+      renderPDFPage();
+      viewer.scrollTop = 0;   // ADD THIS
+      return; 
+    }
+    else { 
+      exitPDF(); 
+      if(index > 0){ 
+        index--; 
+        imgX = imgY = 0; 
+        loadPage(true); 
+        viewer.scrollTop = 0;   // ADD THIS
+      } 
+      return; 
+    }
   }
-  if(index > 0){ index--; imgX = imgY = 0; loadPage(true); }
+  if(index > 0){ 
+    index--; 
+    imgX = imgY = 0; 
+    loadPage(true); 
+    viewer.scrollTop = 0;   // ADD THIS
+  }
 });
 
 pageInput.addEventListener('input', ()=> {
@@ -1291,7 +1663,8 @@ viewer.addEventListener('touchstart', e => {
         if(canvas){ pdfX = parseFloat(canvas.dataset.x||0); pdfY = parseFloat(canvas.dataset.y||0); canvas.style.pointerEvents = 'auto'; }
       }
     } else {
-      drag = true; startX = e.touches[0].pageX; startY = e.touches[0].pageY; startImgX = imgX; startImgY = imgY;
+  drag = zoomLevel > autoScale + 0.01;
+ startX = e.touches[0].pageX; startY = e.touches[0].pageY; startImgX = imgX; startImgY = imgY;
     }
   } else if(e.touches.length === 2){
     lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
@@ -1303,8 +1676,35 @@ viewer.addEventListener('touchstart', e => {
   }
 });
 
+
+
+
+
+
 viewer.addEventListener('touchmove', e => {
-  if(e.cancelable) e.preventDefault();
+
+  // ⭐ Always allow pinch zoom
+  if(e.touches.length === 2){
+    if(e.cancelable) e.preventDefault();
+  }
+
+  // ⭐ Allow normal scrolling when single finger & not zoomed
+  else if(!pdfMode.active && zoomLevel <= autoScale + 0.01){
+    return;
+  }
+
+  else if(pdfMode.active && Math.abs(pdfMode.scale - 1) < 0.01){
+    return;
+  }
+
+  else {
+    if(e.cancelable) e.preventDefault();
+  }
+
+
+  
+  
+  
   if(e.touches.length === 1){
     if(pdfMode.active && pdfDrag){
       const canvas = document.getElementById('pdfPage');
@@ -1343,9 +1743,23 @@ viewer.addEventListener('touchmove', e => {
       // ensure canvas receives pointer events when zoomed
       canvas.style.pointerEvents = 'auto';
     } else {
-      zoomLevel = Math.max(autoScale, Math.min(4, zoomLevel * zoomChange));
-      imgX = pinchStart.left + (pinchCenter.x * (zoomChange - 1));
-      imgY = pinchStart.top + (pinchCenter.y * (zoomChange - 1));
+	
+      let newZoom = Math.max(autoScale, Math.min(4, zoomLevel * zoomChange));
+
+// ⭐ Calculate pinch focus relative to image
+let dx = pinchCenter.x - imgX;
+let dy = pinchCenter.y - imgY;
+
+// ⭐ Adjust position so pinch stays fixed
+imgX -= dx * (newZoom / zoomLevel - 1);
+imgY -= dy * (newZoom / zoomLevel - 1);
+
+zoomLevel = newZoom;
+
+	  
+	  
+	  
+	  
       let vw = viewer.clientWidth, vh = viewer.clientHeight;
       let iw = img.naturalWidth * zoomLevel, ih = img.naturalHeight * zoomLevel;
       imgX = clamp(imgX, Math.min(0, vw - iw), 0); imgY = clamp(imgY, Math.min(0, vh - ih), 0);
@@ -1526,6 +1940,159 @@ function preloadNext() {
 }
 
 
+
+
+
+
+
+function showClass(cls){
+
+  const subjects = ["Chemistry","Biology","Physics","Enviroment"];
+
+  subjects.forEach(id=>{
+    document.getElementById(id).style.display = "none";
+  });
+
+  document.getElementById(cls).style.display = "block";
+}
+
+
+
+
+
+
+
+function showBookmarks(){
+
+ if(!currentCode) return;
+
+ let key = "bookmark_" + currentCode;
+
+ let bookmarks = JSON.parse(localStorage.getItem(key)) || [];
+
+ if(bookmarks.length === 0){
+   alert("No bookmarks saved.");
+   return;
+ }
+
+ bookmarks.sort((a,b)=>a-b);
+
+ let popup = document.createElement("div");
+
+ popup.style.position = "fixed";
+ popup.style.top = "50%";
+ popup.style.left = "50%";
+ popup.style.transform = "translate(-50%,-50%)";
+ popup.style.background = "#222";
+ popup.style.color = "white";
+ popup.style.padding = "15px";
+ popup.style.borderRadius = "8px";
+ popup.style.zIndex = "9999";
+ popup.style.maxHeight = "300px";
+ popup.style.overflowY = "auto";
+
+ let html = "<h3>Bookmarks</h3>";
+
+ bookmarks.forEach(p=>{
+   html += `<div style="padding:5px;cursor:pointer" onclick="jumpToBookmark(${p})">Page ${p+1}</div>`;
+ });
+
+ html += `<div style="margin-top:10px;text-align:center">
+ <button onclick="this.parentElement.parentElement.remove()">Close</button>
+ </div>`;
+
+ popup.innerHTML = html;
+
+ document.body.appendChild(popup);
+
+}
+function jumpToBookmark(p){
+
+ index = p;
+
+ loadPage();
+
+ document.querySelectorAll("div").forEach(el=>{
+   if(el.style && el.style.zIndex === "9999"){
+     el.remove();
+   }
+ });
+
+}
+/* ===== BUY POPUP LOGIC (FIXED) ===== */
+/* ===== BUY POPUP LOGIC (DELAY + OUTSIDE CLICK) ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  const popupOverlay = document.getElementById('buyPopupOverlay');
+  const closePopupBtn = document.getElementById('closePopup');
+  const popupBox = document.getElementById('buyPopup');
+
+  if (!popupOverlay || !closePopupBtn || !popupBox) return;
+
+  // Hide initially
+  popupOverlay.style.display = 'none';
+
+  // Show after 3 seconds
+  setTimeout(() => {
+    popupOverlay.style.display = 'flex';
+  }, 3000);
+
+  // Close via button
+  closePopupBtn.addEventListener('click', () => {
+    popupOverlay.style.display = 'none';
+  });
+
+  // Close when clicking outside popup box
+  popupOverlay.addEventListener('click', (e) => {
+    if (!popupBox.contains(e.target)) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+
+  // Optional auto-close after 8 seconds (after it appears)
+  setTimeout(() => {
+    popupOverlay.style.display = 'none';
+  }, 14000); // 3s delay + 8s visible
+});
+
+
+let bookmarkBtn = document.getElementById("bookmarkBtn");
+
+bookmarkBtn.addEventListener("click", function(){
+
+ if(!currentCode) return;
+
+ let key = "bookmark_" + currentCode;
+
+ let bookmarks = JSON.parse(localStorage.getItem(key)) || [];
+
+ if(bookmarks.includes(index)){
+     bookmarks = bookmarks.filter(p => p !== index);
+     bookmarkBtn.classList.remove("active");
+ }else{
+     bookmarks.push(index);
+     bookmarkBtn.classList.add("active");
+ }
+
+ localStorage.setItem(key, JSON.stringify(bookmarks));
+});
+
 </script>
+<!-- ===== BUY HARD COPY POPUP ===== -->
+<div id="buyPopupOverlay">
+  <div id="buyPopup">
+    <h2>📘 Buy Hard Copy Available</h2>
+    <p>
+      Get the complete printed book with premium quality pages.<br>
+      Click below to buy the hard copy.
+    </p>
+
+    <!-- 🔗 Replace the link later -->
+    <a href="https://smcl10science-hash.github.io/SM-Cl-10-Science-data/store/cass  12  physsics  store.html" id="buyPopupBtn" target="_blank">BUY HARD COPY</a>
+
+    <button id="closePopup">Maybe Later</button>
+  </div>
+</div>
+
 </body>
+
 </html>
